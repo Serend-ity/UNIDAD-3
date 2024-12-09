@@ -1,0 +1,49 @@
+class Nodo:
+    def __init__(self,Valor):
+        self.Valor = Valor
+        self.Izq = None
+        self.Der = None
+
+class Arbol:
+    def __init__(self):
+        self.Raiz= None
+
+    def Agregar(self, Valor):
+        N_N= Nodo(Valor)
+        if self.Raiz is None:
+            self.Raiz= N_N
+        else:
+            self.Agregar_R(self.Raiz, N_N)
+
+    def Agregar_R(self, N_A,N_N):
+        if N_A.Valor > N_N.Valor:
+            if N_A.Izq is None:
+                N_A.Izq= N_N
+            else:
+                self.Agregar_R(N_A.Izq, N_N)
+        else:
+            if N_A.Der is None:
+                N_A.Der= N_N
+            else:
+                self.Agregar_R(N_A.Der, N_N)
+
+    def Mostrar(self):
+        self.Mostrar_R(self.Raiz)
+        
+    def Mostrar_R(self, N_A):
+        if N_A is not None:
+            print(N_A.Valor)
+            self.Mostrar_R(N_A.Der)
+            self.Mostrar_R(N_A.Izq)
+            
+
+if __name__== "__main__":
+    Arbol= Arbol()
+
+Arbol.Agregar(5)
+Arbol.Agregar(7)
+Arbol.Agregar(9)
+Arbol.Agregar(10)
+Arbol.Agregar(4)
+Arbol.Agregar(2)
+Arbol.Mostrar()
